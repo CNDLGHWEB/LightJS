@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Input
 {
-    /// <summary>
-    /// clsInputBox 的摘要说明。
-    /// </summary>
+
     public class InputBox : System.Windows.Forms.Form
     {
         private System.Windows.Forms.TextBox txtData;
@@ -41,7 +47,7 @@ namespace Input
             // txtData
             // 
 
-            this.txtData.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular,
+            this.txtData.Font = new System.Drawing.Font("黑体", 10.5F, System.Drawing.FontStyle.Regular,
                                                         System.Drawing.GraphicsUnit.Point, ((System.Byte)(134)));
             this.txtData.Location = new System.Drawing.Point(19, 8);
             this.txtData.Name = "txtData";
@@ -49,6 +55,8 @@ namespace Input
             this.txtData.TabIndex = 0;
             this.txtData.Text = "";
             this.txtData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtData_KeyDown);
+            this.txtData.UseSystemPasswordChar = false;
+            this.txtData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
             // 
             // lblInfo
@@ -57,19 +65,21 @@ namespace Input
             this.lblInfo.BackColor = System.Drawing.SystemColors.Info;
             this.lblInfo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.lblInfo.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular,
+            this.lblInfo.Font = new System.Drawing.Font("黑体", 9F, System.Drawing.FontStyle.Regular,
                                                         System.Drawing.GraphicsUnit.Point, ((System.Byte)(134)));
-            this.lblInfo.ForeColor = System.Drawing.Color.Gray;
+            this.lblInfo.ForeColor = System.Drawing.Color.Black;
             this.lblInfo.Location = new System.Drawing.Point(19, 32);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(317, 16);
             this.lblInfo.TabIndex = 1;
-            this.lblInfo.Text = "[Enter]确认 | [Esc]取消";
-
+            this.lblInfo.Text = "";
+            this.lblInfo.BackColor = Color.SkyBlue;
+            this.lblInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             // 
             // InputBox
             // 
 
+            this.BackColor = Color.SkyBlue;
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 14);
             this.ClientSize = new System.Drawing.Size(350, 48);
             this.ControlBox = false;
@@ -105,7 +115,21 @@ namespace Input
             if (keyInfo.Trim() != string.Empty)
                 inputbox.lblInfo.Text = keyInfo;
             inputbox.ShowDialog();
-
+            inputbox.txtData.PasswordChar = ' ';
+            inputbox.txtData.UseSystemPasswordChar = false;
+            return inputbox.txtData.Text;
+        }
+        public static string PShowInputBox(string Title, string keyInfo, char pwds)
+        {
+            InputBox inputbox = new InputBox();
+            inputbox.Text = Title;
+            inputbox.txtData.UseSystemPasswordChar = true;
+            inputbox.txtData.PasswordChar = pwds;
+            if (keyInfo.Trim() != string.Empty)
+                inputbox.lblInfo.Text = keyInfo;
+            inputbox.ShowDialog();
+            inputbox.txtData.PasswordChar = ' ';
+            inputbox.txtData.UseSystemPasswordChar = false;
             return inputbox.txtData.Text;
         }
     }
