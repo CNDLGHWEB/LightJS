@@ -13,12 +13,7 @@ using Jurassic;
 using System.Runtime.InteropServices;
 using Input;
 
-/*
- * 作者：轻翼
- * 使用库：Jurassic(MIT协议)
- * GPL协议授权使用本软件
- * MIT协议可以使用Jurassic
-*/
+
 namespace LightJS
 {
     #region Form1类
