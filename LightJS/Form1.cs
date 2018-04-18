@@ -13,8 +13,15 @@ using Jurassic;
 using System.Runtime.InteropServices;
 using Input;
 
+/*
+ * 作者：轻翼
+ * 使用库：Jurassic(MIT协议)
+ * GPL协议授权使用本软件
+ * MIT协议可以使用Jurassic
+*/
 namespace LightJS
 {
+    #region Form1类
     public partial class Form1 : Form
     {
         
@@ -60,7 +67,8 @@ namespace LightJS
         }
        
     }
-
+    #endregion
+    #region System类
     // == Main类
     public class Main : ObjectInstance
     {
@@ -110,7 +118,8 @@ namespace LightJS
             return InputBox.ShowInputBox(text, title);
         }
     }
-
+    #endregion
+    #region 文件操作类
     // == File类
     public class File : ObjectInstance
     {
@@ -149,7 +158,5 @@ namespace LightJS
             
         }
     }
-
-    
-    
+    #endregion
 }
